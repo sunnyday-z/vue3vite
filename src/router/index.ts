@@ -1,84 +1,47 @@
-import { createRouter, createWebHashHistory, Router } from 'vue-router'
-import Layout from '@/layout'
-import { RouterTy } from '@/types/router'
+import { createRouter, createWebHashHistory } from 'vue-router'
+import Layout from '@/layout/index.vue'
 
-export const constantRoutes: RouterTy = [
-  // {
-  //   path: '/redirect',
-  //   component: Layout,
-  //   hidden: true,
-  //   children: [
-  //     {
-  //       path: '/redirect/:path(.*)',
-  //       component: () => import('@/views/redirect/index')
-  //     }
-  //   ]
-  // },
+export const constantRoutes = [
   {
     path: '/login',
-    component: () => import('@/views/login/Login.vue'),
+    component: () => import('@/views/login/index.vue'),
+    hidden: true
+  },
+  {
+    path: '/register',
+    component: () => import('@/views/login/register.vue'),
     hidden: true
   },
   {
     path: '/404',
-    component: () => import('@/views/error-page/404'),
+    component: () => import('@/views/error-page/404.vue'),
     hidden: true
   },
   {
     path: '/401',
-    component: () => import('@/views/error-page/401'),
+    component: () => import('@/views/error-page/401.vue'),
     hidden: true
   },
-  {
-    path: '/clueForm',
-    component: () => import('@/views/clueForm/index'),
-    hidden: true
-  }
-]
-/**
- * asyncRoutes
- * the routes that need to be dynamically loaded based on user roles
- */
-export const asyncRoutes: RouterTy = [
+
   {
     path: '/',
     component: Layout,
-    // redirect: '/clue',
+    redirect: '/index',
     children: [
       {
-        path: '/clue',
-        name: 'clue',
-        component: () => import('@/views/clue/index'),
-        meta: { title: '工作桌面', icon: 'table' }
-      },
-      {
-        path: '/SubordinateClueMenu2',
-        name: 'SubordinateClueMenu2',
-        component: () => import('@/views/SubordinateClueMenu2/index'),
-        meta: { title: 'Table2', icon: 'table' }
-      },
-      {
-        path: '/SubordinateClueMenu',
-        name: 'SubordinateClueMenu',
-        component: () => import('@/views/SubordinateClueMenu/index'),
-        meta: { title: 'Table', icon: 'table' }
+        path: 'index',
+        name: 'Dashboard',
+        component: () => import('@/views/dashboard/index.vue'),
+        meta: { title: 'Dashboard', elSvgIcon: 'Fold', affix: true }
       }
     ]
   }
 ]
 
-const router: Router = createRouter({
+const router = createRouter({
   history: createWebHashHistory(),
   scrollBehavior: () => ({ top: 0 }),
   routes: constantRoutes
 })
-
-// export function resetRouter() {
-//   const newRouter = createRouter({
-//     history: createWebHashHistory(),
-//     scrollBehavior: () => ({ top: 0 }),
-//     routes: constantRoutes
-//   })
-// }
 
 export default router

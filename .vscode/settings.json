@@ -54,5 +54,6 @@
   "prettier.arrowParens": "avoid",
   "prettier.jsxBracketSameLine": true,
   "prettier.jsxSingleQuote": true,
-  "prettier.printWidth": 120
+  "prettier.printWidth": 120,
+  "prettier.trailingComma": "none"
 }
